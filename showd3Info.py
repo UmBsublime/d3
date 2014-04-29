@@ -1,17 +1,13 @@
 #!/usr/bin/env python3
 
-import interfaceD3info as d3Info
+import d3Profile
 import os
 
 
-# "Weight in tons {0.weight}"      # 'weight' attribute of first positional arg
-# "Units destroyed: {players[0]}"  # First element of keyword argument 'players'.
-
-#print (getD3info.DoAll('sublime', 1487))
-
 def GetHeroes(userName, battleTag):
-    heros = d3Info.ChampRequest(uid={'username': userName, 'battletag': battleTag})
-    return heros.GetInfo()
+    heroes = d3Profile.ProfileRequest(userName=userName, userId=battleTag)
+    #heroes.GetData()
+    return heroes.GetData()
 
 
 def ChooseHeroType(heroes):
@@ -52,16 +48,9 @@ def showHeroes(heroes, heroType, short=False):
     print ('*' * 80)
 
 
-def ShowHero(hero):
-    #for key, value in hero.items() :
-        #print ('{}: {}'.format(key, value))
-    pass
-
-
 def main():
     heroes = GetHeroes('sublime', 1487)
     ChooseHeroType(heroes)
-    pass
 
 
 if __name__ == '__main__':
