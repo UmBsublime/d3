@@ -36,16 +36,10 @@ class D3ApiRequest():
         self.uid = uid
         test = False
         if uid['username'] is None:
-            print ('D3ApiRequest: You need to init api request with username')
-            test = True
+            raise ValueError('D3ApiRequest: You need to init api request with username')
         if uid['battletag'] is None:
-            print ('D3ApiRequest: You need to init api request with battletag')
-            test = True
-
-        if test:
-            print('D3ApiRequest: api request init error')
-            sys.exit()
-
+            raise ValueError('D3ApiRequest: You need to init api request with battletag')
+            
         self.profileUrl = '{}{}-{}/'.format(apiProfileBaseUrl,
                                             self.uid['username'],
                                             self.uid['battletag']
@@ -92,56 +86,12 @@ class D3ApiRequest():
         self.GetJSON()
         print ('JSON: {}'.format(self.jsonData))
 
-
-class ChampRequest(object):
-
-    def __init__(self, uid={'username': None, 'battletag': None}):
-
-        self.uid = uid
-        self._Prepare()
-
-    def _Prepare(self):
-        self.RetrieveJSON()
-        self.ParseHeroes()
-
-    def RetrieveJSON(self):
-        request = D3ApiRequest(self.uid)
-        request.Retrieve()
-        self.json = request.jsonData
-
-    def ParseHeroes(self):
-        '''
-        return a dict{NormalHeroes = [h1, h2, ...], HardCoreHeroes = [h1, h2, ...]}
-        '''
-        normalHeroes = []
-        harcoreHeroes = []
-        for hero in self.json['heroes']:
-            if hero['hardcore'] is True:
-                harcoreHeroes.append(hero)
-            else:
-                normalHeroes.append(hero)
-
-        heroes = {'normal': normalHeroes, 'hardcore': harcoreHeroes}
-        self.heroes = heroes
-
-    def GetHeroes(self):
-        return self.heroes
-
-
-
 def main():
     user = {'username': 'sublime', 'battletag': 1487}
     os.system('clear')
 
     request = D3ApiRequest(uid=user)
     request.DoIt()
-
-    testUser = ChampRequest(uid=user)
-    testUser.json
-
-    #champs = Champions('sublime', 1487)
-    #print (champs.GetHeroes())
-
 
 if __name__ == '__main__':
     main()

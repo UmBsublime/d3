@@ -10,7 +10,7 @@ import os
 #print (getD3info.DoAll('sublime', 1487))
 
 def GetHeroes(userName, battleTag):
-    heros = d3Info.GetChamps(uid={'username': userName, 'battletag': battleTag})
+    heros = d3Info.ChampRequest(uid={'username': userName, 'battletag': battleTag})
     return heros.GetInfo()
 
 
