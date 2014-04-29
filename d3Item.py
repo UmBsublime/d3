@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import genericAPIrequest as apiRequest
 
-apiItemBaseUrl = 'http://us.battle.net/api/d3/data/item/'
+apiItemBaseUrl = 'http://us.battle.net/api/d3/data/'
 
 '''
     $this->item_url      = 'http://'.$server.$this->host.'/api/d3/data/';

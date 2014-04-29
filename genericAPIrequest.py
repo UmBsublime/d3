@@ -9,6 +9,8 @@ class AbstractRequest(metaclass=ABCMeta):
 
     @abstractmethod
     def ParseData(self):
+        data = None
+        self.data = data
         pass
 
     def RetrieveData(self):

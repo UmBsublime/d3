@@ -23,31 +23,45 @@ class HeroRequest(apiRequest.AbstractRequest):
         self.url = apiProfileBaseUrl.format(self.userName, self.userId, self.query)
         print (self.url)
 
-
     def ParseData(self):
-        '''
-        return a dict{NormalHeroes = [h1, h2, ...], HardCoreHeroes = [h1, h2, ...]}
-        '''
-        normalHeroes = []
-        harcoreHeroes = []
-        for hero in self.jsonData['heroes']:
-            if hero['hardcore'] is True:
-                harcoreHeroes.append(hero)
-            else:
-                normalHeroes.append(hero)
 
-        heroes = {'normal': normalHeroes, 'hardcore': harcoreHeroes}
-        self.data = heroes
+        # Get stats
+        self.stats = self.jsonData['stats']
 
+        # Get items
+        self.items = {}
+        for item in self.jsonData['items']:
+            self.items[item] = {'name': self.jsonData['items'][item]['name'],
+                                'link': self.jsonData['items'][item]['tooltipParams']}
+
+        # Get skills
+        self.skills = {}
+        for skill in self.jsonData['skills']['active']:
+            self.skills[skill['skill']['name']] = {'rune': skill['rune']['description'],
+                                                   'skill': skill['skill']['description']}
+        self.data = {'stats':self.stats, 'skills': self.skills, 'items': self.items}
+
+    def GetSkills(self):
+        return self.skills
+
+    def GetItems(self):
+        return self.items
+
+    def GetStats(self):
+        return self.stats
 
 def main():
     import json
     test = HeroRequest('sublime', 1487, '44528223')
 
-    testData = test.RetrieveData()
-    #print(json.dumps(testData, indent=4, sort_keys=True))
+    testData = test.GetData()
+    print(json.dumps(testData, indent=4, sort_keys=True))
     test.ParseData()
-    pritn (test.url)
+    print (test.url)
+
+    for item in testData['items']:
+        print (item)
+        print(testData['items'][item]['link'])
 
 
 if __name__ == '__main__':
