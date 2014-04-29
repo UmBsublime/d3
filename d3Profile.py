@@ -21,18 +21,13 @@ class ProfileRequest(apiRequest.AbstractRequest):
 
     def ParseData(self):
         '''
-        return a dict{NormalHeroes = [h1, h2, ...], HardCoreHeroes = [h1, h2, ...]}
+        return a dict
         '''
-        normalHeroes = []
-        harcoreHeroes = []
+        heroIdList = {}
         for hero in self.jsonData['heroes']:
-            if hero['hardcore'] is True:
-                harcoreHeroes.append(hero)
-            else:
-                normalHeroes.append(hero)
+            heroIdList[hero['id']] = hero
 
-        heroes = {'normal': normalHeroes, 'hardcore': harcoreHeroes}
-        self.data = heroes
+        self.data = heroIdList
 
 def main():
     import json
@@ -41,6 +36,7 @@ def main():
     testData = test.RetrieveData()
     #print(json.dumps(testData, indent=4, sort_keys=True))
     test.ParseData()
+    print(json.dumps(test.GetData(), indent=4, sort_keys=True))
 
 if __name__ == '__main__':
     main()

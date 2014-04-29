@@ -17,19 +17,19 @@ class HeroRequest(apiRequest.AbstractRequest):
             raise ValueError('ItemRequest init: missing query')
 
         self.userName = userName
-        self.userId = str(userId)  #lol
+        self.userId = str(userId)
         self.query = query
 
         self.url = apiProfileBaseUrl.format(self.userName, self.userId, self.query)
         print (self.url)
 
     def ParseData(self):
+        self.items = {}
 
         # Get stats
         self.stats = self.jsonData['stats']
 
         # Get items
-        self.items = {}
         for item in self.jsonData['items']:
             self.items[item] = {'name': self.jsonData['items'][item]['name'],
                                 'link': self.jsonData['items'][item]['tooltipParams']}
