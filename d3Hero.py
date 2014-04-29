@@ -17,7 +17,7 @@ class HeroRequest(apiRequest.AbstractRequest):
             raise ValueError('ItemRequest init: missing query')
 
         self.userName = userName
-        self.userId = str(userId)
+        self.userId = str(userId)  #lol
         self.query = query
 
         self.url = apiProfileBaseUrl.format(self.userName, self.userId, self.query)
