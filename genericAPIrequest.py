@@ -4,7 +4,6 @@
 import urllib.request
 import json
 
-import sys
 import os
 
 
@@ -27,6 +26,27 @@ apiProfileBaseUrl = 'http://us.battle.net/api/d3/profile/'
 apiItemBaseUrl = 'http://us.battle.net/api/d3/data/item/'
 
 
+class AbstractRequest(metaclass=ABCMeta):
+
+
+    @abstractmethod
+    def RetrieveData(self):
+        pass
+
+    @abstractmethod
+    def ParseData(self):
+        pass
+
+    @abstractmethod
+    def GetData(self):
+        ''' return the requested data'''
+        pass
+
+
+
+
+
+
 class D3ApiRequest():
 
     def __init__(self, uid={'username': None, 'battletag': None}, query='', queryType='profile', ):
@@ -39,7 +59,7 @@ class D3ApiRequest():
             raise ValueError('D3ApiRequest: You need to init api request with username')
         if uid['battletag'] is None:
             raise ValueError('D3ApiRequest: You need to init api request with battletag')
-            
+
         self.profileUrl = '{}{}-{}/'.format(apiProfileBaseUrl,
                                             self.uid['username'],
                                             self.uid['battletag']
