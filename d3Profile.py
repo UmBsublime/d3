@@ -17,7 +17,7 @@ class ProfileRequest(apiRequest.AbstractRequest):
         self.userId = str(userId)
 
         self.url = apiProfileBaseUrl.format(self.userName,  self.userId)
-        print (self.url)
+        print ('Debug: {}'.format(self.url))
 
     def ParseData(self):
         '''

@@ -21,7 +21,7 @@ class HeroRequest(apiRequest.AbstractRequest):
         self.query = query
 
         self.url = apiProfileBaseUrl.format(self.userName, self.userId, self.query)
-        print (self.url)
+        print ('Debug: {}'.format(self.url))
 
     def ParseData(self):
         self.items = {}

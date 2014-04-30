@@ -27,7 +27,7 @@ class ItemRequest(apiRequest.AbstractRequest):
         self.query = query
 
         self.url = apiItemBaseUrl + self.query
-        print (self.url)
+        print ('Debug: {}'.format(self.url))
 
     def ParseData(self):
         self.type = None

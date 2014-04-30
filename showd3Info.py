@@ -1,87 +1,129 @@
 #!/usr/bin/env python3
 
+from abc import ABCMeta, abstractmethod
 import d3Profile, d3Item, d3Hero
-import os
 
-
-def GetProfile(userName, userId):
-    profile = d3Profile.ProfileRequest(userName, userId)
-    #heroes.GetData()
-    return profile.GetData()
 
 def GetHero(userName, userId, heroId):
     hero = d3Hero.HeroRequest(userName, userId, heroId)
     return hero.GetData()
 
 
-def showProfile(profile):
-    os.system('clear')
+class abstractViewer(metaclass=ABCMeta):
 
-    i = 0
+    def _set_header(self, title, border='*'):
 
-    print ('Heros are shown like this "name / level / class / Hardcore"')
-    print ('*' * 80)
-    choiceMapping = {}
-    for heroId in profile:
-        i += 1
-        choiceMapping[str(i)] = heroId
-        print ('{:>2}.  |  {:<12} /  {:<4} /   {:<15}/  {:<4}'.format(i,
-                                                                      profile[heroId]['name'],
-                                                                      profile[heroId]['level'],
-                                                                      profile[heroId]['class'],
-                                                                      str(profile[heroId]['hardcore'])
-                                                                      ))
+        border80 = border * 80
+        title = '{border}{title:^78}{border}'.format(border=border, title=title)
 
-    print ('*' * 80)
-
-    moreInfo = input('What hero do you want info on ? <num>: ')
-
-    try:
-        heroId = choiceMapping[str(moreInfo)]
-        #print (test)
-        return heroId
-    except KeyError:
-        print ('invalid choice')
+        self.header = '{border80}\n{title}\n{border80}'.format(border80=border80, title=title)
 
 
-def ShowHero(hero):
+class ProfileViewer(abstractViewer):
 
-    # Hero Stats
-    print ('*' * 80)
-    print ('*{:^78}*'.format('HERO STATS'))
-    print ('*' * 80)
-    for name, stat in hero['stats'].items():
-        print ('{:<20}: {:<10}'.format(name, stat))
+    def __init__(self, userName, userId):
 
-    # Hero Skills
-    print ('*' * 80)
-    print ('*{:^78}*'.format('HERO SKILLS'))
-    print ('*' * 80)
-    for skillName, description in hero['skills'].items():
-        print ('SKILL\n{}\n{}\n\nRUNE\n{}'.format(skillName,
-                                                  description['skill'],
-                                                  description['rune']))
-        print ('*' * 80)
+        self.userName = userName
+        self.userId = userId
+        profileRequest = d3Profile.ProfileRequest(userName, userId)
+        self.profile = profileRequest.GetData()
 
-    # Hero Items
-    print ('*{:^78}*'.format('HERO ITEMS'))
-    print ('*' * 80)
-    for itemType, item in hero['items'].items():
-        print ('{:<15}: {}'.format(itemType,
-                               item['name']))
+        self.border1='*'
+        self.border2='-'
+        self._set_header('PROFILE')
 
-    print ('*' * 80)
+    def set_hero(heroId):
+
+        heroRequest = d3Hero.HeroRequest(self.userName, self.userId, heroId)
+        self.hero = heroRequest.GetData()
+
+    def get_hero(self, heroId):
+        heroRequest = d3Hero.HeroRequest(self.userName, self.userId, heroId)
+        return heroRequest.GetData()
+
+    def get_heroId_mapping(self):
+        i = 0
+        choiceMapping = {}
+        for heroId in self.profile:
+            i += 1
+            choiceMapping[str(i)] = heroId
+
+        self.choiceMapping = choiceMapping
+        return choiceMapping
+
+    def print_profile(self):
+        print(self.header)
+        print(' #      {:<12} |  {:<4} |   {:<15}|  {:<4}'.format('NAME', 'LVL', 'CLASS', 'HARDCORE'))
+        print(self.border2 * 80)
+        i = 0
+        for heroId in self.profile:
+            i += 1
+            print ('{:>2}.  |  {:<12} |  {:<4} |   {:<15}|  {:<4}'.format(i,
+                                                                          self.profile[heroId]['name'],
+                                                                          self.profile[heroId]['level'],
+                                                                          self.profile[heroId]['class'],
+                                                                          str(self.profile[heroId]['hardcore'])
+                                                                          ))
+        print(self.border2 * 80)
+
+
+class HeroViewer(abstractViewer):
+
+    def __init__(self, hero, border1='*', border2='-'):
+
+        self.hero = hero
+        self.border1 = border1
+        self.border2 = border2
+        self.header = None
+        self._set_header('NO INIT')
+
+    def print_items(self):
+        self._set_header('ITEMS')
+        print(self.header)
+
+        for itemType, item in self.hero['items'].items():
+            print ('{:<15}: {}'.format(itemType,
+                                       item['name']))
+
+    def print_skills(self):
+        self._set_header('SKILLS')
+        print(self.header)
+
+        for skillName, description in self.hero['skills'].items():
+            print ('SKILL\n{}\n{}\n\nRUNE\n{}'.format(skillName,
+                                                    description['skill'],
+                                                    description['rune']))
+            print (self.border2 * 80)
+
+    def print_stats(self):
+        self._set_header('STATS')
+        print(self.header)
+        for name, stat in self.hero['stats'].items():
+            print ('{:<20}: {:<25}'.format(name, stat))
 
 
 def main():
+
+    import os
+
+    os.system('clear')
     userName = 'sublime'
     userId = 1487
 
-    profile = GetProfile(userName, userId)
-    #print (heroes)
-    heroId = showProfile(profile)
+    myProfile =  ProfileViewer(userName, userId)
+    heroIdMapping = myProfile.get_heroId_mapping()
+
+    myProfile.print_profile()
+    choice = input("choose a hero <num>: ")
+    heroId = heroIdMapping[str(choice)]
+
     hero = GetHero(userName, userId, heroId)
-    ShowHero(hero)
+    myHero = HeroViewer(hero)
+
+    myHero.print_stats()
+    myHero.print_items()
+    myHero.print_skills()
+
 
 
 if __name__ == '__main__':
