@@ -46,16 +46,31 @@ def showProfile(profile):
 
 def ShowHero(hero):
 
+    # Hero Stats
+    print ('*' * 80)
+    print ('*{:^78}*'.format('HERO STATS'))
+    print ('*' * 80)
     for name, stat in hero['stats'].items():
         print ('{:<20}: {:<10}'.format(name, stat))
 
-    for skillName, value in hero['skills'].items():
-        print ('*' * 80)
-        print ('Skill Name: {}\n{}\nRune Effect: {}'.format(skillName,
-                                                                          value['skill'],
-                                                                          value['rune']))
+    # Hero Skills
     print ('*' * 80)
-    #print (hero)
+    print ('*{:^78}*'.format('HERO SKILLS'))
+    print ('*' * 80)
+    for skillName, description in hero['skills'].items():
+        print ('SKILL\n{}\n{}\n\nRUNE\n{}'.format(skillName,
+                                                  description['skill'],
+                                                  description['rune']))
+        print ('*' * 80)
+
+    # Hero Items
+    print ('*{:^78}*'.format('HERO ITEMS'))
+    print ('*' * 80)
+    for itemType, item in hero['items'].items():
+        print ('{:<15}: {}'.format(itemType,
+                               item['name']))
+
+    print ('*' * 80)
 
 
 def main():

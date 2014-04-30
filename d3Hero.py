@@ -31,14 +31,21 @@ class HeroRequest(apiRequest.AbstractRequest):
 
         # Get items
         for item in self.jsonData['items']:
-            self.items[item] = {'name': self.jsonData['items'][item]['name'],
-                                'link': self.jsonData['items'][item]['tooltipParams']}
+            try:
+                self.items[item] = {'name': self.jsonData['items'][item]['name'],
+                                    'link': self.jsonData['items'][item]['tooltipParams']}
+            except KeyError:
+                pass
 
         # Get skills
         self.skills = {}
         for skill in self.jsonData['skills']['active']:
-            self.skills[skill['skill']['name']] = {'rune': skill['rune']['description'],
-                                                   'skill': skill['skill']['description']}
+            try:
+                self.skills[skill['skill']['name']] = {'rune': skill['rune']['description'],
+                                                       'skill': skill['skill']['description']}
+            except KeyError:
+                pass
+
         self.data = {'stats':self.stats, 'skills': self.skills, 'items': self.items}
 
     def GetSkills(self):
