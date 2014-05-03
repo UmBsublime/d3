@@ -109,8 +109,8 @@ def main():
     import os
 
     os.system('clear')
-    userName = 'sublime'
-    userId = 1487
+    userName = 'ltbart'
+    userId = 1946
 
     myProfile = ProfileViewer(userName, userId)
     heroIdMapping = myProfile.get_heroId_mapping()
