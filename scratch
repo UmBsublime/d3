@@ -1,0 +1,86 @@
+"typeName" : "Rare Chest Armor",
+"type" : {
+    "twoHanded" : false,
+    "id" : "GenericChestArmor"
+    },
+"armor" : {
+    "min" : 169.0,
+    "max" : 169.0
+    },
+"attributes" : {
+    "primary" : [ {
+                    "text" : "+153 Strength",
+                    "affixType" : "default",
+                    "color" : "blue"
+                  }, {
+                    "text" : "+149 Vitality",
+                    "affixType" : "default",
+                    "color" : "blue"
+                  }, {
+                    "text" : "Regenerates 32 Life per Second",
+                    "affixType" : "enchant",
+                    "color" : "blue"
+                  }
+                ],
+    "secondary" : [ {
+                    "text" : "+40 Physical Resistance",
+                    "affixType" : "default",
+                    "color" : "blue"
+                  }, {
+                    "text" : "+12% Extra Gold from Monsters",
+                    "affixType" : "utility",
+                    "color" : "blue"
+                  }
+                ],
+    "passive" : [ ]
+},
+"attributesRaw" : {
+    "Strength_Item" : {
+        "min" : 153.0,
+        "max" : 153.0
+        },
+    "Durability_Max_Before_Reforge" : {
+        "min" : 612.0,
+        "max" : 612.0
+        },
+    "Hitpoints_Regen_Per_Second" : {
+        "min" : 32.0,
+        "max" : 32.0
+        },
+    "Durability_Max" : {
+        "min" : 612.0,
+        "max" : 612.0
+        },
+    "Armor_Item" : {
+        "min" : 169.0,
+        "max" : 169.0
+        },
+    "Resistance#Physical" : {
+        "min" : 40.0,
+        "max" : 40.0
+        },
+    "Item_Binding_Level_Override" : {
+        "min" : 2.0,
+        "max" : 2.0
+        },
+    "Vitality_Item" : {
+        "min" : 149.0,
+        "max" : 149.0
+        },
+    "Gold_Find" : {
+        "min" : 0.12,
+        "max" : 0.12
+    },
+    "Season" : {
+        "min" : 0.0,
+        "max" : 0.0
+    },
+    "Durability_Cur" : {
+        "min" : 516.0,
+        "max" : 516.0
+    },
+    "Sockets" : {
+        "min" : 1.0,
+        "max" : 1.0
+        }
+},
