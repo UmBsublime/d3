@@ -2,7 +2,7 @@
 HeroRequest just returns EVERYTHING about the hero
     Hero will use it to fill itself
         Hero_container will contain a hero and all of its items
-            ProfileContainer will contain everything about all heroes and the profile and manipulate Hero_containers interface
+            ProfileContainer will contain everything about all heroes and the profile and manipulate HeroContainer's interface
 
 
 AbstractRequest()
@@ -17,16 +17,16 @@ AbstractElement()
     self.raw_data
 
         Hero()
-        +GetItemUrls()
-        self.item_url_collection[]
-        self.skill_list[Skill1, Skill2, ...]
-        self.
+            +GetItemUrls()
+            self.item_url_collection[]
+            self.skill_list[Skill1, Skill2, ...]
+            self.
 
         Item()
-        self.type
-        self.properties = PropertyContainer
-        self.tooltip
-        self.gems
+            self.type
+            self.properties = PropertyContainer
+            self.tooltip
+            self.gems
 
 
             Weapon():
@@ -37,10 +37,10 @@ AbstractElement()
                 Legs()
 
         Profile()
-        +
-        self.gameProgress
-        self.hero_id_list[]
-        self.fallen_heroes[]
+            +
+            self.gameProgress
+            self.hero_id_list[]
+            self.fallen_heroes[]
 
 Property():
     self.type  # can be [dmgModifier, skillModifier, baseStatModifier, gameModifier, lifeModifier, manaModifier]
@@ -57,16 +57,21 @@ PropertyContainer()
     self.propertyList[ItemProperty1, ItemProperty2, ...]
 
 
-HeroSkill():
+HeroSkill()
     self.properties = PropertyContainer()
     self.name
     self.tooltip
     self.rune
 
-AbstractContainer
+AbstractContainer()
+
+    SkillContainer()
+
+    ItemContainer()
+
     HeroContainer()
-    +GetAllItems()
-    self.item_tree{
-                    gems{}
-    }
+        +GatherAll()
+        self.skills = Skillcontainer()
+        self.items = ItemContainer()
+        self.HeroList[{'hero': Hero1, 'skills': SkillsContainer, 'itemset': ItemContainer}]
 

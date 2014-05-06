@@ -81,7 +81,15 @@ AbstractElement()
     +
 
 AbstractContainer
+
+    SkillContainer()
+
+    ItemContainer()
+
     HeroContainer()
+    self.skills = Skillcontainer()
+    self.items = ItemContainer()
+    self.HeroList[{'hero': Hero1, 'skillset': SkillsContainer, 'itemset': ItemContainer}]
 
 '''
 class HeroRequest(AbstractRequest):
