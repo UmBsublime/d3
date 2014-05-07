@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import genericAPIrequest as apiRequest
+import abstractRequest as apiRequest
 
 apiProfileBaseUrl = 'http://us.battle.net/api/d3/profile/{}-{}/'
 
