@@ -1,17 +1,10 @@
 #!/usr/bin/env python3
 
-from abc import ABCMeta
 
-from Request.heroRequest import HeroRequest
-from View.ProfileViewer import ProfileViewer
-from View.HeroViewer import HeroViewer
+from view.ProfileViewer import ProfileViewer
+from view.HeroViewer import HeroViewer
 
-
-
-def getHero(userName, userId, heroId):
-    hero = HeroRequest(userName, userId, heroId)
-    return hero.GetData()
-
+from helper.general import getHero
 
 
 def main():

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import Request.abstractRequest as request
+import request.abstractRequest as request
 
 apiItemBaseUrl = 'http://us.battle.net/api/d3/data/'
 

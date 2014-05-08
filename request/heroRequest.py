@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import Request.abstractRequest as request
+import request.abstractRequest as request
 
 apiProfileBaseUrl = 'http://us.battle.net/api/d3/profile/{}-{}/hero/{}'
 
