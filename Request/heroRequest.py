@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 
-import abstractRequest as apiRequest
+import Request.abstractRequest as request
 
 apiProfileBaseUrl = 'http://us.battle.net/api/d3/profile/{}-{}/hero/{}'
 
 
-class HeroRequest(apiRequest.AbstractRequest):
+class HeroRequest(request.AbstractRequest):
 
     def __init__(self, userName=None, userId=None, query=None):
         if userName is None:

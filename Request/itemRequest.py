@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import abstractRequest as apiRequest
+import Request.abstractRequest as request
 
 apiItemBaseUrl = 'http://us.battle.net/api/d3/data/'
 
@@ -14,7 +14,7 @@ apiItemBaseUrl = 'http://us.battle.net/api/d3/data/'
 '''
 
 
-class ItemRequest(apiRequest.AbstractRequest):
+class ItemRequest(request.AbstractRequest):
 
     def __init__(self, itemId = None, query=None):
         if itemId is None:
