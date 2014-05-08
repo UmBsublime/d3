@@ -5,11 +5,11 @@ HeroRequest just returns EVERYTHING about the hero
             ProfileContainer will contain everything about all heroes and the profile and manipulate HeroContainer's interface
 
 
-AbstractRequest()
+AbstractRequest() X
 
-    HeroRequest()
-    ItemRequest()
-    ProfileRequest()
+    HeroRequest() X
+    ItemRequest() X
+    ProfileRequest() X
 
 AbstractElement()
     +SendRequest()
