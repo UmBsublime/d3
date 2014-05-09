@@ -4,14 +4,12 @@ from request.heroRequest import HeroRequest
 
 class HeroViewer(AbstractViewer):
 
-    def __init__(self, userName, userId, heroId, border1='*', border2='-'):
+    def __init__(self, userName, userId, heroId):
 
         self.userName = userName
         self.userId = userId
         self.heroId = heroId
 
-        self.border1 = border1
-        self.border2 = border2
 
         heroRequest = HeroRequest(self.userName, self.userId, self.heroId)
         self.hero = heroRequest.GetData()
@@ -35,7 +33,7 @@ class HeroViewer(AbstractViewer):
                                                      description['skill'],
                                                      description['rune']
                                                      ))
-            print(self.border2 * 80)
+            self._print_80('-')
 
     def print_stats(self):
         self._set_header('STATS')
