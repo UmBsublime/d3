@@ -1,10 +1,7 @@
 #!/usr/bin/env python3
 
-
 from view.ProfileViewer import ProfileViewer
 from view.HeroViewer import HeroViewer
-
-from helper.general import getHero
 
 
 def main():
@@ -22,8 +19,8 @@ def main():
     choice = input("choose a hero <num>: ")
     heroId = heroIdMapping[str(choice)]
 
-    hero = getHero(userName, userId, heroId)
-    myHero = HeroViewer(hero)
+
+    myHero = HeroViewer(userName, userId, heroId )
 
     myHero.print_stats()
     myHero.print_items()

@@ -1,8 +1,6 @@
 from .abstractViewer import AbstractViewer
 from request.profileRequest import ProfileRequest
 
-from element import abstractElement
-
 
 class ProfileViewer(AbstractViewer):
 

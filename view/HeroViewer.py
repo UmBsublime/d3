@@ -1,12 +1,20 @@
 from .abstractViewer import AbstractViewer
+from request.heroRequest import HeroRequest
+
 
 class HeroViewer(AbstractViewer):
 
-    def __init__(self, hero, border1='*', border2='-'):
+    def __init__(self, userName, userId, heroId, border1='*', border2='-'):
 
-        self.hero = hero
+        self.userName = userName
+        self.userId = userId
+        self.heroId = heroId
+
         self.border1 = border1
         self.border2 = border2
+
+        heroRequest = HeroRequest(self.userName, self.userId, self.heroId)
+        self.hero = heroRequest.GetData()
         self.header = None
         self._set_header('NO INIT')
 
