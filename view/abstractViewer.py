@@ -12,5 +12,3 @@ class AbstractViewer(metaclass=ABCMeta):
 
         self.header = '{border80}\n{title}\n{border80}'.format(border80=border80, title=title)
 
-    def _print_80(self, border='*'):
-        print(border*80)

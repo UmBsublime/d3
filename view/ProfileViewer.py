@@ -23,15 +23,6 @@ class ProfileViewer(AbstractViewer):
 
         self.choiceMapping = choiceMapping
 
-    def set_hero(self, heroId):
-
-        heroRequest = d3Hero.HeroRequest(self.userName, self.userId, heroId)
-        self.hero = heroRequest.GetData()
-
-    def get_hero(self, heroId):
-        heroRequest = d3Hero.HeroRequest(self.userName, self.userId, heroId)
-        return heroRequest.GetData()
-
     def get_heroId_mapping(self):
         return self.choiceMapping
 

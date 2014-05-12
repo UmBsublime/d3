@@ -1,5 +1,6 @@
 from .abstractViewer import AbstractViewer
 from request.heroRequest import HeroRequest
+from helper.general import print_80
 
 
 class HeroViewer(AbstractViewer):
@@ -33,7 +34,7 @@ class HeroViewer(AbstractViewer):
                                                      description['skill'],
                                                      description['rune']
                                                      ))
-            self._print_80('-')
+            print_80('-')
 
     def print_stats(self):
         self._set_header('STATS')
