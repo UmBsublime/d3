@@ -48,14 +48,7 @@ class HeroRequest(request.AbstractRequest):
 
         self.data = {'stats':self.stats, 'skills': self.skills, 'items': self.items}
 
-    def GetSkills(self):
-        return self.skills
 
-    def GetItems(self):
-        return self.items
-
-    def GetStats(self):
-        return self.stats
 
 def main():
     import json
