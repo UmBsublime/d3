@@ -50,6 +50,7 @@ class HeroRequest(request.AbstractRequest):
 
 
 
+
 def main():
     import json
     test = HeroRequest('sublime', 1487, '44528223')
