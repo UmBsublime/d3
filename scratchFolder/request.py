@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-from abc import ABCMeta, abstractmethod
 import urllib.request
 import json
 
@@ -29,9 +28,9 @@ class Profile():
 
     def __init__(self, userName=None, userId=None):
         if userName is None:
-            raise ValueError('ItemRequest init: missing userName')
+            raise ValueError('Profile init: missing userName')
         if userId is None:
-            raise ValueError('ItemRequest init: missing userId')
+            raise ValueError('Profile init: missing userId')
 
         self.userName = userName
         self.userId = str(userId)
@@ -49,18 +48,17 @@ class Hero():
 
     def __init__(self, userName=None, userId=None, heroId=None):
         if userName is None:
-            raise ValueError('ItemRequest init: missing userName')
+            raise ValueError('Hero init: missing userName')
         if userId is None:
-            raise ValueError('ItemRequest init: missing userId')
-
-        if query is None:
-            raise ValueError('ItemRequest init: missing heroId')
+            raise ValueError('Hero init: missing userId')
+        if heroId is None:
+            raise ValueError('Hero init: missing heroId')
 
         self.userName = userName
         self.userId = str(userId)
         self.heroId = heroId
 
-        self.url = baseUrl.format(self.userName, self.userId, self.heroId)
+        self.url = Hero.baseUrl.format(self.userName, self.userId, self.heroId)
         print ('Debug: {}'.format(self.url))
 
         r = Request(self.url)
@@ -78,7 +76,7 @@ class Item():
 
         self.itemId = itemId
 
-        self.url = baseUrl + self.itemId
+        self.url = Item.baseUrl + self.itemId
         print ('Debug: {}'.format(self.url))
 
         r = Request(self.url)
